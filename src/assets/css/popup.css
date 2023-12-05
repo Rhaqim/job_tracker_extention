@@ -1,3 +1,17 @@
+body {
+	width: 20rem;
+	margin: 20px;
+	margin-right: 40px;
+	border-radius: 5px;
+	background-color: #1e1e1e; /* Dark background color for dark mode */
+	color: #fff; /* Text color for dark mode */
+	transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+h1 {
+	color: #0073e6;
+}
+
 #formContainer {
 	border: 1px solid #ddd;
 	padding: 10px;

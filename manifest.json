@@ -1,8 +1,8 @@
 {
 	"manifest_version": 3,
 	"name": "MIL",
-	"description": "Need to track all the jobs I apply to, who gets back to, where I get an interview and when I succeed",
 	"version": "1.0",
+	"description": "Track all the jobs applied to, track responses, and get reminders to follow up.",
 	"permissions": [
 		"activeTab",
 		"tabs",
@@ -12,26 +12,27 @@
 		"identity",
 		"identity.email"
 	],
-	"background": {
-		"service_worker": "src/background-script.js"
-	},
 	"action": {
 		"default_popup": "src/popup.html",
 		"default_title": "MIL"
 	},
 	"content_scripts": [
 		{
-			"matches": [
-				"https://www.linkedin.com/jobs/search/*",
-				"https://www.linkedin.com/jobs/view/*",
-				"https://www.indeed.com/jobs?q=*",
-				"https://www.indeed.com/viewjob?*"
-			],
+			"matches": ["<all_urls>"],
 			"js": ["src/content.js"]
 		}
 	],
+	"background": {
+		"service_worker": "src/background.js"
+	},
 	"oauth2": {
 		"client_id": "yourExtensionOAuthClientIDWillGoHere.apps.googleusercontent.com",
-		"scopes": [""]
-	}
+		"scopes": ["openid", "profile", "email"]
+	},
+	"web_accessible_resources": [
+		{
+			"resources": ["src/popup.html"],
+			"matches": ["<all_urls>"]
+		}
+	]
 }

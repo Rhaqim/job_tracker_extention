@@ -1,15 +1,10 @@
-// content.ts
-
-// Check if the current URL matches the URL you are interested in
-if (
-	window.location.href.startsWith("http://example.com") ||
-	window.location.href.startsWith("https://example.com") ||
-	window.location.href.startsWith("https://www.linkedin.com/jobs/search/*")
-) {
-	// Use the chrome.runtime.sendMessage to send a message to your background script
-	chrome.runtime.sendMessage({ action: "showPopup" });
-}
-
 // content.js
-console.log("Content script running on this page: " + window.location.href);
-// You can perform actions here, like showing a button, form, or your extension UI.
+
+// Listen for messages from the background script
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+	// Check if the message instructs to show the popup
+	if (message.action === "showPopup") {
+		// Add your logic to show the popup or interact with the DOM here
+		console.log("Show popup logic in content script");
+	}
+});
