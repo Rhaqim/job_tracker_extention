@@ -13,17 +13,27 @@
 		"identity.email"
 	],
 	"action": {
+		"default_icon": {
+			"24": "images/icons8-chrome-24.png",
+			"48": "images/icons8-chrome-48.png",
+			"128": "images/icons8-chrome-128.png"
+		},
 		"default_popup": "src/popup.html",
 		"default_title": "MIL"
+	},
+	"icons": {
+		"24": "images/icons8-chrome-24.png",
+		"48": "images/icons8-chrome-48.png",
+		"128": "images/icons8-chrome-128.png"
 	},
 	"content_scripts": [
 		{
 			"matches": ["<all_urls>"],
-			"js": ["src/content.js"]
+			"js": ["src/core/content.js"]
 		}
 	],
 	"background": {
-		"service_worker": "src/background.js"
+		"service_worker": "src/core/background.js"
 	},
 	"oauth2": {
 		"client_id": "yourExtensionOAuthClientIDWillGoHere.apps.googleusercontent.com",

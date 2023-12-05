@@ -9,15 +9,19 @@
 		"rootDir": "./src", // Source directory
 		"moduleResolution": "node", // Use Node.js-style module resolution
 		"forceConsistentCasingInFileNames": true, // Ensure consistent file names
-		"lib": ["DOM", "ESNext"] // List of libraries to include
+		"lib": [
+			"DOM",
+			"ESNext"
+		] // List of libraries to include
 	},
 	"include": [
 		"src/**/*.ts",
 		"src/**/*.tsx",
-		"src/popup.ts",
-		"src/popup.ts",
-		"src/content.js",
-		"src/background-script.js"
+		"src/**/*.js",
+		"src/core/content.js",
+		"src/core/background.js",
 	], // Specify source files
-	"exclude": ["node_modules"] // Exclude node_modules
+	"exclude": [
+		"node_modules"
+	] // Exclude node_modules
 }
