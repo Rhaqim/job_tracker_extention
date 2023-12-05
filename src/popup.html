@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>MIL Job Application Tracker</title>
+		<link rel="stylesheet" type="text/css" href="popup.css" />
+		<link rel="stylesheet" type="text/css" href="assets/css/form.css" />
+	</head>
+	<body>
+		<h1>Applying for a new job today?</h1>
+		<p>Would you like to log this?</p>
+
+		<div id="formContainer">
+			<h2>Job Application Details</h2>
+			<form id="jobApplicationForm">
+				<label for="applyingThrough">Appying through:</label>
+				<input
+					type="text"
+					id="applyingThrough"
+					name="applyingThrough"
+					required
+				/>
+
+				<label for="jobWebsite">Job Website:</label>
+				<input type="text" id="jobWebsite" name="jobWebsite" required />
+
+				<label for="companyName">Company Name:</label>
+				<input type="text" id="companyName" name="companyName" required />
+
+				<label for="role">Role:</label>
+				<input type="text" id="role" name="role" required />
+
+				<label for="country">Country:</label>
+				<select id="country" name="country" required></select>
+
+				<!-- <label for="keywords">Keywords:</label>
+				<input type="text" id="keywords" name="keywords" required /> -->
+
+				<div class="tag-container">
+					<input type="text" id="tag-input" placeholder="Type a tag" />
+				</div>
+				<div class="selected-tags">
+					<!-- Selected tags will appear here -->
+				</div>
+
+				<button id="trackButton" type="submit">Track</button>
+			</form>
+		</div>
+
+		<script src="popup.js"></script>
+		<script src="assets/js/form.js"></script>
+		<script src="https://apis.google.com/js/client.js"></script>
+	</body>
+</html>

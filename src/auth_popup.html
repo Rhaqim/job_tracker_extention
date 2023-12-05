@@ -1,0 +1,36 @@
+<!-- FILEPATH: /Users/rhaqim/Documents/Personal Projects/JobTracker/src/auth_popup.html -->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Google OAuth2 Authentication</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	</head>
+	<body>
+		<h1>Google OAuth2 Authentication</h1>
+		<button onclick="authenticate()">Sign in with Google</button>
+
+		<!-- <script src="https://apis.google.com/js/client.js" async defer></script>
+		<script>
+			function authenticate() {
+				gapi.auth2
+					.init({
+						client_id: "YOUR_CLIENT_ID",
+						scope: "email profile openid",
+					})
+					.then(() => {
+						gapi.auth2
+							.getAuthInstance()
+							.signIn()
+							.then(() => {
+								const user = gapi.auth2.getAuthInstance().currentUser.get();
+								const id_token = user.getAuthResponse().id_token;
+								// Send the id_token to your server for verification
+								console.log(id_token);
+							});
+					});
+			}
+		</script> -->
+	</body>
+</html>

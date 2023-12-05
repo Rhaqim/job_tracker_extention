@@ -1,0 +1,37 @@
+{
+	"manifest_version": 3,
+	"name": "MIL",
+	"description": "Need to track all the jobs I apply to, who gets back to, where I get an interview and when I succeed",
+	"version": "1.0",
+	"permissions": [
+		"activeTab",
+		"tabs",
+		"background",
+		"scripting",
+		"storage",
+		"identity",
+		"identity.email"
+	],
+	"background": {
+		"service_worker": "src/background-script.js"
+	},
+	"action": {
+		"default_popup": "src/popup.html",
+		"default_title": "MIL"
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"https://www.linkedin.com/jobs/search/*",
+				"https://www.linkedin.com/jobs/view/*",
+				"https://www.indeed.com/jobs?q=*",
+				"https://www.indeed.com/viewjob?*"
+			],
+			"js": ["src/content.js"]
+		}
+	],
+	"oauth2": {
+		"client_id": "yourExtensionOAuthClientIDWillGoHere.apps.googleusercontent.com",
+		"scopes": [""]
+	}
+}
