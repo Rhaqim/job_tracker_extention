@@ -20,10 +20,10 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 			chrome.identity.getAuthToken({ interactive: false }, function (token) {
 				if (chrome.runtime.lastError || !token) {
 					// User is not authenticated, show authentication popup
-					chrome.action.setPopup({ popup: "src/popup.html" });
+					chrome.action.setPopup({ popup: "src/auth.html" });
 				} else {
 					// User is authenticated, show the regular popup
-					chrome.action.setPopup({ popup: "src/auth_popup.html" });
+					chrome.action.setPopup({ popup: "src/popup.html" });
 
 					// Inject content script when the page is fully loaded
 					chrome.scripting.executeScript({
