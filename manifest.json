@@ -1,6 +1,6 @@
 {
 	"manifest_version": 3,
-	"name": "MIL",
+	"name": "Jobs we want",
 	"version": "1.0",
 	"description": "Track all the jobs applied to, track responses, and get reminders to follow up.",
 	"permissions": [
@@ -19,7 +19,7 @@
 			"128": "images/icons8-chrome-128.png"
 		},
 		"default_popup": "src/popup.html",
-		"default_title": "MIL"
+		"default_title": "Jobs we want"
 	},
 	"icons": {
 		"24": "images/icons8-chrome-24.png",
