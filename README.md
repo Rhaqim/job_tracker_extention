@@ -1,11 +1,11 @@
-# Job Application Tracker Chrome Extension
+# Jobs We Want - Job Application Tracker Chrome Extension
 
 ## Table of Contents
 
-- [Job Application Tracker Chrome Extension](#job-application-tracker-chrome-extension)
+- [Jobs We Want - Job Application Tracker Chrome Extension](#jobs-we-want---job-application-tracker-chrome-extension)
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
-    - [Key Features](#key-features)
+  - [Key Features](#key-features)
   - [How It Works](#how-it-works)
   - [Metrics](#metrics)
 
@@ -13,7 +13,7 @@
 
 The **Job Application Tracker Chrome Extension** is a powerful tool designed to help you streamline your job application process. Whether you're actively job hunting or just want to keep a record of your job applications, this extension simplifies the process of tracking, organizing, and managing your job applications, all within your web browser.
 
-### Key Features
+## Key Features
 
 - **Effortless Tracking:** Easily create and manage a comprehensive list of your job applications right from your web browser.
 - **Customizable Categories:** Organize your applications into categories (e.g., "Applied," "Interview Scheduled," "Offer Received") for better management.
