@@ -14,27 +14,5 @@
 		<button id="authButton">Sign in with Google</button>
 
 		<script src="./assets/js/auth.js"></script>
-
-		<!-- <script src="https://apis.google.com/js/client.js" async defer></script>
-		<script>
-			function authenticate() {
-				gapi.auth2
-					.init({
-						client_id: "YOUR_CLIENT_ID",
-						scope: "email profile openid",
-					})
-					.then(() => {
-						gapi.auth2
-							.getAuthInstance()
-							.signIn()
-							.then(() => {
-								const user = gapi.auth2.getAuthInstance().currentUser.get();
-								const id_token = user.getAuthResponse().id_token;
-								// Send the id_token to your server for verification
-								console.log(id_token);
-							});
-					});
-			}
-		</script> -->
 	</body>
 </html>

@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		jobWebsite.value = websiteUrl;
 		applyingThrough.value = foundAt;
 		// join keywords with a space
-		keywords.value = keywords_list[0];
+		// keywords.value = keywords_list[0];
 	});
 
 	// populate country dropdown
