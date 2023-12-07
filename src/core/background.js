@@ -20,16 +20,16 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 			chrome.identity.getAuthToken({ interactive: false }, function (token) {
 				if (chrome.runtime.lastError || !token) {
 					// User is not authenticated, show authentication popup
-					chrome.action.setPopup({ popup: "src/auth.html" });
-				} else {
-					// User is authenticated, show the regular popup
 					chrome.action.setPopup({ popup: "src/popup.html" });
-
 					// Inject content script when the page is fully loaded
 					chrome.scripting.executeScript({
 						target: { tabId: tabId },
 						function: showPopupScript,
 					});
+				} else {
+					// User is authenticated, show the regular popup
+					chrome.action.setPopup({ popup: "src/auth.html" });
+
 				}
 			});
 		}
@@ -39,4 +39,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 // Function to be executed by the content script
 function showPopupScript() {
 	chrome.runtime.sendMessage({ action: "showPopup" });
+	// chrome.tabs.sendMessage(tabid, { action: "showPopup" }, function (response) {
+	// 	console.log(response);
+	// });
 }

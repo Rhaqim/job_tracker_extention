@@ -7,8 +7,9 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 		// Add your logic to show the popup or interact with the DOM here
 
 		// highlight the first paragraph
-		document.querySelector("p").style.backgroundColor = "yellow";
-		document.querySelector("p").style.color = "black";	
+		let header_value = document.querySelector("h1");
+
+		chrome.runtime.sendMessage({ action: "header_value", value: header_value.innerText });
 
 
 		console.log("Show popup logic in content script");

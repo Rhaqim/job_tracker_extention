@@ -28,8 +28,17 @@
 	},
 	"content_scripts": [
 		{
-			"matches": ["<all_urls>"],
-			"js": ["src/core/content.js"]
+			"matches": ["https://*.example.com/*", "<all_urls>"],
+			"js": ["src/core/content.js"],
+
+			"exclude_matches": ["*://*/*foo*"],
+			"include_globs": ["*example.com/???s/*"],
+			"exclude_globs": ["*bar*"],
+			"all_frames": false,
+			"match_origin_as_fallback": false,
+			"match_about_blank": false,
+			"run_at": "document_idle",
+			"world": "ISOLATED"
 		}
 	],
 	"background": {
@@ -41,7 +50,19 @@
 	},
 	"web_accessible_resources": [
 		{
-			"resources": ["src/popup.html"],
+			"resources": [
+				"src/popup.html",
+				"src/assets/js/popup.js",
+				"src/assets/css/popup.css"
+			],
+			"matches": ["<all_urls>"]
+		},
+		{
+			"resources": [
+				"src/auth.html",
+				"src/assets/js/auth.js",
+				"src/assets/css/auth.css"
+			],
 			"matches": ["<all_urls>"]
 		}
 	]

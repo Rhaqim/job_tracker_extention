@@ -16,7 +16,13 @@ document.addEventListener("DOMContentLoaded", function () {
 		const websiteUrlParams = websiteUrl.split("?")[1];
 
 		// get the geoid from the query params
-		const queries = websiteUrlParams.split("&");
+		let queries;
+
+		if (websiteUrlParams.includes("&")) {
+			queries = websiteUrlParams.split("&");
+		} else {
+			queries = [websiteUrlParams];
+		}
 
 		for (let i = 0; i < queries.length; i++) {
 			const query = queries[i].split("=");
@@ -30,12 +36,25 @@ document.addEventListener("DOMContentLoaded", function () {
 			}
 		}
 
+		chrome.runtime.onMessage.addListener(function (
+			message,
+			sender,
+			sendResponse
+		) {
+			if (message.action === "header_value") {
+				console.log("Message received: ", message);
+				role.value = message.value;
+			}
+		});
+
 		// strip the website url get just the first part after the https unless its docs/web then get the second
 		const websiteUrlSplit = websiteUrl.split("/");
 
 		// split the url with . and check if there are 3 parts, get the second part else get the first part
 		const mid_part = websiteUrlSplit[2].split(".");
 		let foundAt = mid_part.length === 3 ? mid_part[1] : mid_part[0];
+
+		console.log("Found at: ", foundAt);
 
 		jobWebsite.value = websiteUrl;
 		applyingThrough.value = foundAt;
