@@ -12,6 +12,7 @@
 		"identity",
 		"identity.email"
 	],
+	"host_permissions": ["*://*.linkedin.com/*", "*://*.example.com/*"],
 	"action": {
 		"default_icon": {
 			"24": "images/icons8-chrome-24.png",
@@ -26,10 +27,13 @@
 		"48": "images/icons8-chrome-48.png",
 		"128": "images/icons8-chrome-128.png"
 	},
+	"background": {
+		"service_worker": "src/core/b.js"
+	},
 	"content_scripts": [
 		{
-			"matches": ["https://*.example.com/*", "<all_urls>"],
-			"js": ["src/core/content.js"],
+			"matches": ["*://*.linkedin.com/*", "*://*.example.com/*", "<all_urls>"],
+			"js": ["src/core/c.js"],
 
 			"exclude_matches": ["*://*/*foo*"],
 			"include_globs": ["*example.com/???s/*"],
@@ -41,9 +45,6 @@
 			"world": "ISOLATED"
 		}
 	],
-	"background": {
-		"service_worker": "src/core/background.js"
-	},
 	"oauth2": {
 		"client_id": "yourExtensionOAuthClientIDWillGoHere.apps.googleusercontent.com",
 		"scopes": ["openid", "profile", "email"]
@@ -52,7 +53,7 @@
 		{
 			"resources": [
 				"src/popup.html",
-				"src/assets/js/popup.js",
+				"src/assets/js/p.js",
 				"src/assets/css/popup.css"
 			],
 			"matches": ["<all_urls>"]

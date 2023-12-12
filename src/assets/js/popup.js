@@ -4,6 +4,17 @@ document.addEventListener("DOMContentLoaded", function () {
 	const role = document.getElementById("role");
 	const keywords = document.getElementById("keywords");
 
+	let jobTitle = "default";
+
+	const port = chrome.runtime.connect({ name: "popup" });
+
+	port.postMessage("getExtractedData");
+
+	port.onMessage.addListener(data => {
+		// Use the extracted data to populate the popup.html
+		role.value = data;
+	});
+
 	let geoid = "";
 	let keywords_list = [];
 
@@ -35,17 +46,6 @@ document.addEventListener("DOMContentLoaded", function () {
 				keywords_list = query[1].split("%20");
 			}
 		}
-
-		chrome.runtime.onMessage.addListener(function (
-			message,
-			sender,
-			sendResponse
-		) {
-			if (message.action === "header_value") {
-				console.log("Message received: ", message);
-				role.value = message.value;
-			}
-		});
 
 		// strip the website url get just the first part after the https unless its docs/web then get the second
 		const websiteUrlSplit = websiteUrl.split("/");
@@ -146,3 +146,18 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 	}
 });
+
+
+// const sendMessageButton = document.getElementById("sendMessage");
+// sendMessageButton.onclick = async function (e) {
+//   let queryOptions = { active: true, currentWindow: true };
+//   let tab = await chrome.tabs.query(queryOptions);
+
+//   chrome.tabs.sendMessage(
+//     tabs[0].id,
+//     { color: "#00FF00" },
+//     function (response) {
+//       console.log(response.status);
+//     }
+//   );
+// };

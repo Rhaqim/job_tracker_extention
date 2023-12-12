@@ -21,6 +21,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 				if (chrome.runtime.lastError || !token) {
 					// User is not authenticated, show authentication popup
 					chrome.action.setPopup({ popup: "src/popup.html" });
+
 					// Inject content script when the page is fully loaded
 					chrome.scripting.executeScript({
 						target: { tabId: tabId },
@@ -29,7 +30,6 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 				} else {
 					// User is authenticated, show the regular popup
 					chrome.action.setPopup({ popup: "src/auth.html" });
-
 				}
 			});
 		}
@@ -43,3 +43,24 @@ function showPopupScript() {
 	// 	console.log(response);
 	// });
 }
+
+let extractedData = "";
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+	if (message.action === "header_value") {
+		extractedData = message.value;
+	}
+});
+
+function getExtractedData() {
+	return extractedData;
+}
+
+// Make the function accessible to other parts of the extension
+chrome.runtime.onConnect.addListener(port => {
+	port.onMessage.addListener(msg => {
+		if (msg === "getExtractedData") {
+			port.postMessage(getExtractedData());
+		}
+	});
+});
