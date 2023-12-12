@@ -1,16 +1,20 @@
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.action === "bghighlight") {
-    var color = message.color;
+// Listen for messages from the background script
+// chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+//   // Check if the message instructs to show the popup
+//   if (message.action === "showPopup") {
+//     // Add your logic to show the popup or interact with the DOM here
+//     sendResponse({ message: "Hello from content script" });
+//   }
+// });
 
-    if (color === "green") {
-      document.body.style.backgroundColor = "green";
-    } else if (color === "red") {
-      document.body.style.backgroundColor = "red";
-    } else {
-      document.body.style.backgroundColor = "white";
-    }
+// contentScript.js
 
-    console.log("The message sender is: ", sender);
-    sendResponse("Background color changed!");
-  }
-});
+// const port = chrome.runtime.connect({ name: "content-script" });
+
+// document.addEventListener("DOMContentLoaded", function () {
+// 	if (/https:\/\/www\.linkedin\.com\/jobs\/search\/.*/.test(window.location.href)) {
+// 		const headerElement = document.querySelector(".header");
+
+// 		port.postMessage({ headerValue: headerElement.innerText });
+// 	}
+// });
