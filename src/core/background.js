@@ -43,24 +43,3 @@ function showPopupScript() {
 	// 	console.log(response);
 	// });
 }
-
-let extractedData = "";
-
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-	if (message.action === "header_value") {
-		extractedData = message.value;
-	}
-});
-
-function getExtractedData() {
-	return extractedData;
-}
-
-// Make the function accessible to other parts of the extension
-chrome.runtime.onConnect.addListener(port => {
-	port.onMessage.addListener(msg => {
-		if (msg === "getExtractedData") {
-			port.postMessage(getExtractedData());
-		}
-	});
-});

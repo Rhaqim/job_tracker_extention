@@ -12,23 +12,19 @@
 		"identity",
 		"identity.email"
 	],
+
+	"background": {
+		"service_worker": "background.js"
+	},
 	"host_permissions": ["*://*.linkedin.com/*", "*://*.example.com/*"],
+
 	"action": {
 		"default_icon": {
 			"24": "images/icons8-chrome-24.png",
 			"48": "images/icons8-chrome-48.png",
 			"128": "images/icons8-chrome-128.png"
 		},
-		"default_popup": "src/popup.html",
 		"default_title": "Jobs we want"
-	},
-	"icons": {
-		"24": "images/icons8-chrome-24.png",
-		"48": "images/icons8-chrome-48.png",
-		"128": "images/icons8-chrome-128.png"
-	},
-	"background": {
-		"service_worker": "background.js"
 	},
 	"content_scripts": [
 		{
@@ -36,10 +32,17 @@
 			"js": ["contentScript.js"]
 		}
 	],
+
+	"icons": {
+		"24": "images/icons8-chrome-24.png",
+		"48": "images/icons8-chrome-48.png",
+		"128": "images/icons8-chrome-128.png"
+	},
 	"oauth2": {
 		"client_id": "yourExtensionOAuthClientIDWillGoHere.apps.googleusercontent.com",
 		"scopes": ["openid", "profile", "email"]
 	},
+
 	"web_accessible_resources": [
 		{
 			"resources": [

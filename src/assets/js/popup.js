@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	let geoid = "";
 	let keywords_list = [];
+
+	console.log("Popup DOM fully loaded and parsed");
 	
 	// Listen for messages from background script
 	chrome.runtime.onMessage.addListener(function (
@@ -15,12 +17,12 @@ document.addEventListener("DOMContentLoaded", function () {
 		sendResponse
 	) {
 		if (message.action === "updatePopup") {
-			const headerText = message.data.jobTitle;
+			const data = message.jobTitle;
 
 			// Do something with the extracted data (e.g., update the popup UI)
-			console.log("Header text from content script:", headerText);
+			console.log("Header text from content script:", data);
 
-			role.value = headerText;
+			role.value = data;
 		}
 	});
 
