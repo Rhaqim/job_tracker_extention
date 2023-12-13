@@ -1,3 +1,24 @@
+let a
+let b
+let c
+let d
+let e
+
+
+
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+	if (message.action === "updatePopup") {
+		console.log("Message from background script: ", message);
+
+		// Update the popup DOM with the data from the message
+		// a = message.data.foundAt;
+		// b = message.data.websiteUrl;
+		// c = message.data.company;
+		// d = message.data.role;
+		// e = message.data.keywords;
+	}
+})
+
 document.addEventListener("DOMContentLoaded", function () {
 	const applyingThrough = document.getElementById("applyingThrough");
 	const jobWebsite = document.getElementById("jobWebsite");
@@ -10,23 +31,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	console.log("Popup DOM fully loaded and parsed");
 	
-	// Listen for messages from background script
-	chrome.runtime.onMessage.addListener(function (
-		message,
-		sender,
-		sendResponse
-	) {
-		if (message.action === "updatePopup") {
-			const data = message.jobTitle;
+	// Listen for messages from background scrip
 
-			// Do something with the extracted data (e.g., update the popup UI)
-			console.log("Header text from content script:", data);
-
-			role.value = data;
-		}
-	});
-
-	// Your existing code for populating popup fields based on the URL can remain unchanged.
 	// ...
 
 	// Get the current tab's URL
