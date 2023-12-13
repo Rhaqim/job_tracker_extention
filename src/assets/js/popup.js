@@ -1,19 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
 	const applyingThrough = document.getElementById("applyingThrough");
 	const jobWebsite = document.getElementById("jobWebsite");
+	const company = document.getElementById("company");
 	const role = document.getElementById("role");
 	const keywords = document.getElementById("keywords");
-
-	let jobTitle = "default";
-
-	const port = chrome.runtime.connect({ name: "popup" });
-
-	port.postMessage("getExtractedData");
-
-	port.onMessage.addListener(data => {
-		// Use the extracted data to populate the popup.html
-		role.value = data;
-	});
 
 	let geoid = "";
 	let keywords_list = [];
@@ -61,13 +51,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		// join keywords with a space
 		// keywords.value = keywords_list[0];
 	});
-
-	// get the jobTitle from the background script
-	// chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-	// 	if (message.action === "header_value") {
-	// 		jobTitle = message.value;
-	// 	}
-	// });
 
 	// populate country dropdown
 	const countrySelect = document.getElementById("country");

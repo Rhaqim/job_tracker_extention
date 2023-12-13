@@ -1,20 +1,16 @@
-// Listen for messages from the background script
-// chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-//   // Check if the message instructs to show the popup
-//   if (message.action === "showPopup") {
-//     // Add your logic to show the popup or interact with the DOM here
-//     sendResponse({ message: "Hello from content script" });
-//   }
-// });
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+	if (message.action === "showPopup") {
+		// Extract data from the webpage
 
-// contentScript.js
+		// Add your logic to show the popup or interact with the DOM here
+		var jobTitle = document.getElementsByClassName(
+			"job-details-jobs-unified-top-card__job-title-link"
+		)[0].innerHTML;
 
-// const port = chrome.runtime.connect({ name: "content-script" });
+		// clear white spaces in job title
+		jobTitle = jobTitle.replace(/\s+/g, " ").trim();
 
-// document.addEventListener("DOMContentLoaded", function () {
-// 	if (/https:\/\/www\.linkedin\.com\/jobs\/search\/.*/.test(window.location.href)) {
-// 		const headerElement = document.querySelector(".header");
-
-// 		port.postMessage({ headerValue: headerElement.innerText });
-// 	}
-// });
+		// Send the extracted data back to the background script
+		sendResponse({ jobTitle: jobTitle });
+	}
+});
