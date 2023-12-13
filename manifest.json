@@ -28,12 +28,12 @@
 		"128": "images/icons8-chrome-128.png"
 	},
 	"background": {
-		"service_worker": "src/core/b.js"
+		"service_worker": "background.js"
 	},
 	"content_scripts": [
 		{
 			"matches": ["*://*.linkedin.com/*", "*://*.example.com/*", "<all_urls>"],
-			"js": ["src/core/c.js"]
+			"js": ["contentScript.js"]
 		}
 	],
 	"oauth2": {

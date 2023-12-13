@@ -3,37 +3,49 @@ chrome.runtime.onInstalled.addListener(function () {
 });
 
 chrome.action.onClicked.addListener(function (tab) {
-	console.log("Clicked on the extension icon");
+	console.log("Extention Clicked");
 
 	chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 		const currentTab = tabs[0];
 
-		// Check if content script is already injected
 		chrome.tabs.sendMessage(
 			currentTab.id,
 			{ checkScript: true },
 			function (response) {
 				if (!chrome.runtime.lastError) {
-					// Content script is already injected
+					console.log("Script already injected");
+
 					chrome.tabs.sendMessage(
 						currentTab.id,
 						{ action: "showPopup" },
 						function (response) {
 							console.log("Response from content script: ", response);
+
+							// Relay the data to popup.js
+							chrome.runtime.sendMessage({
+								action: "updatePopup",
+								data: response,
+							});
 						}
 					);
 				} else {
-					// Content script is not injected, inject it first
+					console.log("Injecting script from file");
+
 					chrome.tabs.executeScript(
 						currentTab.id,
 						{ file: "contentScript.js" },
 						function () {
-							// Now, send the message
 							chrome.tabs.sendMessage(
 								currentTab.id,
 								{ action: "showPopup" },
 								function (response) {
 									console.log("Response from content script: ", response);
+
+									// Relay the data to popup.js
+									chrome.runtime.sendMessage({
+										action: "updatePopup",
+										data: response,
+									});
 								}
 							);
 						}

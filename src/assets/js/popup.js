@@ -7,50 +7,69 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	let geoid = "";
 	let keywords_list = [];
+	
+	// Listen for messages from background script
+	chrome.runtime.onMessage.addListener(function (
+		message,
+		sender,
+		sendResponse
+	) {
+		if (message.action === "updatePopup") {
+			const headerText = message.data.jobTitle;
+
+			// Do something with the extracted data (e.g., update the popup UI)
+			console.log("Header text from content script:", headerText);
+
+			role.value = headerText;
+		}
+	});
+
+	// Your existing code for populating popup fields based on the URL can remain unchanged.
+	// ...
 
 	// Get the current tab's URL
-	chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-		const currentTab = tabs[0];
-		const websiteUrl = currentTab.url;
+	// chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+	// 	const currentTab = tabs[0];
+	// 	const websiteUrl = currentTab.url;
 
-		// strip the query params
-		const websiteUrlParams = websiteUrl.split("?")[1];
+	// 	// strip the query params
+	// 	const websiteUrlParams = websiteUrl.split("?")[1];
 
-		// get the geoid from the query params
-		let queries;
+	// 	// get the geoid from the query params
+	// 	let queries;
 
-		if (websiteUrlParams.includes("&")) {
-			queries = websiteUrlParams.split("&");
-		} else {
-			queries = [websiteUrlParams];
-		}
+	// 	if (websiteUrlParams.includes("&")) {
+	// 		queries = websiteUrlParams.split("&");
+	// 	} else {
+	// 		queries = [websiteUrlParams];
+	// 	}
 
-		for (let i = 0; i < queries.length; i++) {
-			const query = queries[i].split("=");
+	// 	for (let i = 0; i < queries.length; i++) {
+	// 		const query = queries[i].split("=");
 
-			if (query[0] === "geoId" || query[0] === "geoid") {
-				geoid = query[1];
-			}
+	// 		if (query[0] === "geoId" || query[0] === "geoid") {
+	// 			geoid = query[1];
+	// 		}
 
-			if (query[0] === "keywords") {
-				keywords_list = query[1].split("%20");
-			}
-		}
+	// 		if (query[0] === "keywords") {
+	// 			keywords_list = query[1].split("%20");
+	// 		}
+	// 	}
 
-		// strip the website url get just the first part after the https unless its docs/web then get the second
-		const websiteUrlSplit = websiteUrl.split("/");
+	// 	// strip the website url get just the first part after the https unless its docs/web then get the second
+	// 	const websiteUrlSplit = websiteUrl.split("/");
 
-		// split the url with . and check if there are 3 parts, get the second part else get the first part
-		const mid_part = websiteUrlSplit[2].split(".");
-		let foundAt = mid_part.length === 3 ? mid_part[1] : mid_part[0];
+	// 	// split the url with . and check if there are 3 parts, get the second part else get the first part
+	// 	const mid_part = websiteUrlSplit[2].split(".");
+	// 	let foundAt = mid_part.length === 3 ? mid_part[1] : mid_part[0];
 
-		console.log("Found at: ", foundAt);
+	// 	console.log("Found at: ", foundAt);
 
-		jobWebsite.value = websiteUrl;
-		applyingThrough.value = foundAt;
-		// join keywords with a space
-		// keywords.value = keywords_list[0];
-	});
+	// 	jobWebsite.value = websiteUrl;
+	// 	applyingThrough.value = foundAt;
+	// 	// join keywords with a space
+	// 	// keywords.value = keywords_list[0];
+	// });
 
 	// populate country dropdown
 	const countrySelect = document.getElementById("country");
