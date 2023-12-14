@@ -1,35 +1,24 @@
-// background.js
-// chrome.action.onClicked.addListener(tab => {
-
-// 	// Send a message to the active tab
-
-// 	chrome.scripting.executeScript({
-// 		target: { tabId: tab.id },
-// 		files: ["contentScript.js"],
-// 	});
-// });
-
 console.log("Background script running");
 
 // Get data from content script
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+// chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
-	if (message.action === "showPopup") {
-		console.log("Message from content script: ", message.value);
+// 	if (message.action === "showPopup") {
+// 		console.log("Message from content script: ", message.value);
 
 		
-		// open popup
-		chrome.action.setPopup({
-			popup: "src/popup.html",
-		});
+// 		// open popup
+// 		chrome.action.setPopup({
+// 			popup: "src/popup.html",
+// 		});
 		
-		// send a message to popup.js
-		chrome.runtime.sendMessage({
-			action: "updatePopup",
-			data: message.value,
-		});
-	}
-});
+// 		// send a message to popup.js
+// 		chrome.runtime.sendMessage({
+// 			action: "updatePopup",
+// 			data: message.value,
+// 		});
+// 	}
+// });
 
 // chrome.runtime.onInstalled.addListener(function () {
 // 	console.log("Extension is installed");

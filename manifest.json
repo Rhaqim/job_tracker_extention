@@ -14,7 +14,7 @@
 	],
 
 	"background": {
-		"service_worker": "background.js"
+		"service_worker": "b.js"
 	},
 	"host_permissions": ["*://*.linkedin.com/*", "*://*.example.com/*"],
 
@@ -24,12 +24,13 @@
 			"48": "images/icons8-chrome-48.png",
 			"128": "images/icons8-chrome-128.png"
 		},
-		"default_title": "Jobs we want"
+		"default_title": "Jobs we want",
+		"default_popup": "src/popup.html"
 	},
 	"content_scripts": [
 		{
-			"matches": ["*://*.linkedin.com/*", "*://*.example.com/*", "<all_urls>"],
-			"js": ["contentScript.js"]
+			"matches": ["*://*.linkedin.com/*", "<all_urls>"],
+			"js": ["c.js"]
 		}
 	],
 

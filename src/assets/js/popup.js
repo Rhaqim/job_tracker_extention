@@ -1,36 +1,34 @@
-let a
-let b
-let c
-let d
-let e
-
-
-
-chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-	if (message.action === "updatePopup") {
-		console.log("Message from background script: ", message);
-
-		// Update the popup DOM with the data from the message
-		// a = message.data.foundAt;
-		// b = message.data.websiteUrl;
-		// c = message.data.company;
-		// d = message.data.role;
-		// e = message.data.keywords;
-	}
-})
-
 document.addEventListener("DOMContentLoaded", function () {
+	console.log("Popup DOM fully loaded and parsed");
+	let extractedData = {};
+
+	chrome.runtime.sendMessage({ action: "requestDataUpdate" }, response => {
+		if (chrome.runtime.lastError) {
+			console.error(chrome.runtime.lastError);
+			return;
+		}
+
+		console.log("Response from the background script", response);
+
+		extractedData = response;
+	});
+
+	console.log("Extracted data: ", extractedData);
+
 	const applyingThrough = document.getElementById("applyingThrough");
 	const jobWebsite = document.getElementById("jobWebsite");
-	const company = document.getElementById("company");
+	const company = document.getElementById("companyName");
 	const role = document.getElementById("role");
 	const keywords = document.getElementById("keywords");
+
+	applyingThrough.value = extractedData.foundAt;
+	jobWebsite.value = extractedData.websiteUrl;
+	company.value = extractedData.companyName;
+	role.value = extractedData.jobTitle;
 
 	let geoid = "";
 	let keywords_list = [];
 
-	console.log("Popup DOM fully loaded and parsed");
-	
 	// Listen for messages from background scrip
 
 	// ...
