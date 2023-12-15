@@ -5,9 +5,16 @@
 		<link rel="stylesheet" type="text/css" href="popup.css" />
 	</head>
 	<body>
+		<!-- <a href="https://www.linkedin.com/in/abhishek-kumar-9b1b0b1a4/">
+			<img
+				src="https://content.linkedin.com/content/dam/me/business/en-us/amp/brand-site/v2/bg/LI-Bug.svg.original.svg"
+				alt="LinkedIn"
+				width="50"
+				height="50"
+			/>
+		</a> -->
 		<h1>Applying for a new job today?</h1>
-		<p>Would you like to log this?</p>
-
+		<button id="viewApplications" target="_blank">View Applications</button>
 		<div id="formContainer">
 			<h2>Job Application Details</h2>
 			<form id="jobApplicationForm">
@@ -31,9 +38,6 @@
 				<label for="country">Country:</label>
 				<select id="country" name="country" required></select>
 
-				<!-- <label for="keywords">Keywords:</label>
-				<input type="text" id="keywords" name="keywords" required /> -->
-
 				<div class="tag-container">
 					<input type="text" id="tag-input" placeholder="Type a tag" />
 				</div>
@@ -45,7 +49,18 @@
 			</form>
 		</div>
 
+		<div class="success" id="success">
+			<h2>Application Tracked!</h2>
+			<p>View your applications in the extension popup.</p>
+		</div>
+
+		<div class="error" id="error">
+			<h2>Something went wrong!</h2>
+			<p>Please try again.</p>
+		</div>
+
 		<script src="popup.js"></script>
+		<script src="request.js"></script>
 		<!-- <script src="https://apis.google.com/js/client.js"></script> -->
 	</body>
 </html>

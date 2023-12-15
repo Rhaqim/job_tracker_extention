@@ -14,7 +14,7 @@ function setRole(role) {
 	// populate country dropdown
 	const countrySelect = document.getElementById("country");
 
-	fetch("utils/countries.json")
+	fetch("../utils/countries.json")
 		.then(response => response.json())
 		.then(data => {
 			data.forEach(country => {

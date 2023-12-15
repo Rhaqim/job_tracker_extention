@@ -12,19 +12,6 @@ h1 {
 	color: #0073e6;
 }
 
-#formContainer {
-	border: 1px solid #ddd;
-	padding: 10px;
-	border-radius: 5px;
-	width: 100%;
-	margin-top: 15px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-#jobApplicationForm {
-	text-align: left;
-}
-
 label {
 	display: block;
 	margin-bottom: 5px;
@@ -91,4 +78,36 @@ button:hover {
 
 .selected-tags {
 	margin-top: 10px;
+}
+
+#formContainer {
+	display: block;
+	border: 1px solid #ddd;
+	padding: 10px;
+	border-radius: 5px;
+	width: 100%;
+	margin-top: 15px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#jobApplicationForm {
+	text-align: left;
+}
+
+.success {
+	display: none;
+	background-color: #4caf50;
+	color: #fff;
+	padding: 10px;
+	margin-top: 10px;
+	border-radius: 5px;
+}
+
+.error {
+	display: none;
+	background-color: #f44336;
+	color: #fff;
+	padding: 10px;
+	margin-top: 10px;
+	border-radius: 5px;
 }

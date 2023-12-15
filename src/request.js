@@ -4,13 +4,22 @@ const company = document.getElementById("companyName");
 const role = document.getElementById("role");
 const keywords = document.getElementById("keywords");
 
-// Assuming you have a form with id "myForm" and an input field with id "email"
+const viewApplications = document.getElementById("viewApplications");
 const form = document.getElementById("jobApplicationForm");
+const success = document.getElementById("success");
+const errorDiv = document.getElementById("error");
+
 var userEmail;
 
 // get email from chrome storage
 chrome.storage.sync.get(["email"], function (result) {
 	userEmail = result.email;
+});
+
+viewApplications.addEventListener("click", () => {
+	chrome.tabs.create({
+		url: "http://localhost:3000/viewApplications",
+	});
 });
 
 form.addEventListener("submit", event => {
@@ -37,9 +46,31 @@ form.addEventListener("submit", event => {
 		.then(result => {
 			// Handle the response from the server
 			console.log(result);
+
+			// change display to none and success to block
+			form.style.display = "none";
+			success.style.display = "block";
+
+			// reset form and change display to block after 5 seconds
+			setTimeout(() => {
+				form.style.display = "block";
+				success.style.display = "none";
+				form.reset();
+			}, 5000);
 		})
 		.catch(error => {
 			// Handle any errors
 			console.error(error);
+
+			// change display to none and error to block
+			form.style.display = "none";
+			errorDiv.style.display = "block";
+
+			// reset form and change display to block after 5 seconds
+			setTimeout(() => {
+				form.style.display = "block";
+				errorDiv.style.display = "none";
+				form.reset();
+			}, 5000);
 		});
 });

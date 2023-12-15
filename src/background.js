@@ -26,6 +26,12 @@ chrome.runtime.onStartup.addListener(function () {
 // 	}
 // });
 
+const isLinkedInJobs = tab =>
+	/https:\/\/www\.linkedin\.com\/jobs\/search\/.*/.test(tab.url) ||
+	/https:\/\/www\.linkedin\.com\/jobs\/collections\/recommended\/.*/.test(
+		tab.url
+	);
+
 // Event listener to handle when a tab is updated
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 	// Perform actions when a tab is updated here
@@ -33,39 +39,35 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
 	// - Modify tab properties or execute scripts on the tab
 
 	if (changeInfo.status == "complete") {
-		if (
-			/https:\/\/www\.linkedin\.com\/jobs\/search\/.*/.test(tab.url) ||
-			/https:\/\/www\.linkedin\.com\/jobs\/collections\/recommended\/.*/.test(
-				tab.url
-			)
-		) {
-			// Check if the user is authenticated
-			chrome.identity.getAuthToken({ interactive: true }, function (token) {
-				if (chrome.runtime.lastError && !token) {
-					console.log("It was not possible to get a token.");
+		// Check if the user is authenticated
+		chrome.identity.getAuthToken({ interactive: true }, function (token) {
+			if (chrome.runtime.lastError && !token) {
+				console.log("It was not possible to get a token.");
 
-					// User is authenticated, show the regular popup
-					chrome.action.setPopup({ popup: "oauth.html" });
-				} else {
+				// User is authenticated, show the regular popup
+				chrome.action.setPopup({ popup: "src/oauth.html" });
+			} else {
+				// check if the user is on linkedin
+				if (isLinkedInJobs(tab)) {
 					// store user email in chrome storage
 					chrome.identity.getProfileUserInfo(function (userInfo) {
 						chrome.storage.sync.set({ email: userInfo.email });
 					});
 
 					// User is not authenticated, show authentication popup
-					chrome.action.setPopup({ popup: "popup.html" });
+					chrome.action.setPopup({ popup: "src/popup.html" });
 
 					// Inject content script when the page is fully loaded
 					chrome.scripting.executeScript({
 						target: { tabId: tabId },
-						files: ["content.js"],
+						files: ["src/content.js"],
 					});
+				} else {
+					// User is not on the linkedin jobs page, show the regular popup
+					chrome.action.setPopup({ popup: "src/popup.html" });
 				}
-			});
-		} else {
-			// User is not on the linkedin jobs page, show the regular popup
-			chrome.action.setPopup({ popup: "popup.html" });
-		}
+			}
+		});
 	}
 });
 
