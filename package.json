@@ -1,25 +1,8 @@
 {
-	"name": "who-gon-hire-me",
-	"version": "1.0.0",
-	"description": "My Chrome Extension",
-	"main": "dist/background.js",
-	"scripts": {
-		"start": "webpack --mode development --watch",
-		"build": "webpack --mode production",
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"author": "Your Name",
-	"license": "MIT",
-	"dependencies": {
-		"chrome": "0.1.0",
-		"react": "^17.0.2",
-		"react-dom": "^17.0.2"
-	},
-	"devDependencies": {
-		"@types/chrome": "^0.0.246",
-		"ts-loader": "^9.2.6",
-		"typescript": "^4.5.5",
-		"webpack": "^5.67.0",
-		"webpack-cli": "^4.8.0"
-	}
+    "name": "jobswewant",
+    "version": "1.0.0",
+    "description": "A Chrome extension for job search",
+    "dependencies": {
+        "chrome": "^0.1.0"
+    }
 }

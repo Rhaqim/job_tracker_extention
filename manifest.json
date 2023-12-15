@@ -1,65 +1,40 @@
 {
 	"manifest_version": 3,
 	"name": "Jobs we want",
-	"version": "1.0",
-	"description": "Track all the jobs applied to, track responses, and get reminders to follow up.",
-	"permissions": [
-		"activeTab",
-		"tabs",
-		"background",
-		"scripting",
-		"storage",
-		"identity",
-		"identity.email"
-	],
-
-	"background": {
-		"service_worker": "b.js"
+	"version": "1.0.0",
+	"description": "A helpful extension for tracking jobs you want to or have applied to.",
+	"permissions": ["tabs", "storage", "identity", "scripting"],
+	"icons": {
+		"24": "icons/icons8-chrome-24.png",
+		"48": "icons/icons8-chrome-48.png",
+		"128": "icons/icons8-chrome-128.png"
 	},
-	"host_permissions": ["*://*.linkedin.com/*", "*://*.example.com/*"],
-
 	"action": {
-		"default_icon": {
-			"24": "images/icons8-chrome-24.png",
-			"48": "images/icons8-chrome-48.png",
-			"128": "images/icons8-chrome-128.png"
-		},
+		"default_popup": "src/popup.html",
 		"default_title": "Jobs we want",
-		"default_popup": "src/popup.html"
+		"default_icon": {
+			"24": "icons/icons8-chrome-24.png",
+			"48": "icons/icons8-chrome-48.png",
+			"128": "icons/icons8-chrome-128.png"
+		}
 	},
-	"content_scripts": [
+	"background": {
+		"service_worker": "src/background.js"
+	},
+	"options_ui": {
+		"page": "src/options.html",
+		"open_in_tab": false
+	},
+
+	"host_permissions": ["*://*.linkedin.com/*"],
+	"web_accessible_resources": [
 		{
-			"matches": ["*://*.linkedin.com/*", "<all_urls>"],
-			"js": ["c.js"]
+			"resources": ["oauth.html"],
+			"matches": ["*://*.linkedin.com/*"]
 		}
 	],
-
-	"icons": {
-		"24": "images/icons8-chrome-24.png",
-		"48": "images/icons8-chrome-48.png",
-		"128": "images/icons8-chrome-128.png"
-	},
 	"oauth2": {
 		"client_id": "yourExtensionOAuthClientIDWillGoHere.apps.googleusercontent.com",
 		"scopes": ["openid", "profile", "email"]
-	},
-
-	"web_accessible_resources": [
-		{
-			"resources": [
-				"src/popup.html",
-				"src/assets/js/p.js",
-				"src/assets/css/popup.css"
-			],
-			"matches": ["<all_urls>"]
-		},
-		{
-			"resources": [
-				"src/auth.html",
-				"src/assets/js/auth.js",
-				"src/assets/css/auth.css"
-			],
-			"matches": ["<all_urls>"]
-		}
-	]
+	}
 }
