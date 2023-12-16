@@ -1,3 +1,5 @@
+console.log("Regular content script loaded.");
+
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 	if (request.from === "popup") {
 		const websiteUrl = "";

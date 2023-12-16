@@ -1,10 +1,6 @@
 console.log("Popup script loaded.");
 
-var place;
-
 function setRole(role) {
-	console.log("Role received", role);
-
 	document.getElementById("role").value = role.jobRole;
 	document.getElementById("applyingThrough").value = role.foundAt;
 	document.getElementById("jobWebsite").value = role.websiteUrl;

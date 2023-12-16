@@ -1,3 +1,5 @@
+console.log("LinkedIn content script loaded.");
+
 function getJobRole() {
 	var jobTitle = document.querySelectorAll(
 		".job-details-jobs-unified-top-card__job-title-link"

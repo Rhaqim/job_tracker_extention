@@ -26,7 +26,18 @@
 		"open_in_tab": false
 	},
 
-	"host_permissions": ["*://*.linkedin.com/*"],
+	"host_permissions": [
+		"*://*.linkedin.com/*",
+		"*://*.indeed.com/*",
+		"*://*.glassdoor.com/*",
+		"*://*.monster.com/*",
+		"*://*.ziprecruiter.com/*",
+		"*://*.careerbuilder.com/*",
+		"*://*.simplyhired.com/*",
+		"*://*.dice.com/*",
+		"*://*.stackoverflow.com/*",
+		"*://*.themuse.com/*"
+	],
 	"web_accessible_resources": [
 		{
 			"resources": ["oauth.html"],
